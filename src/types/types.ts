@@ -34,3 +34,7 @@ type LoaderProps = {
 type LoadMoreProps = {
   onAdd: () => Promise<void>;
 };
+
+type UnsplashResponse = {
+  results: Photo[];
+};
