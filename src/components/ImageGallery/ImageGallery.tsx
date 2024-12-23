@@ -1,7 +1,7 @@
 import ImageCard from "../ImageCard/ImageCard";
 import s from "./ImageGallery.module.css";
 
-const ImageGallery = ({ data, getModal }) => {
+const ImageGallery: React.FC<ImageGalleryProps> = ({ data, getModal }) => {
   return (
     <ul className={s.list}>
       {data.map((item) => (

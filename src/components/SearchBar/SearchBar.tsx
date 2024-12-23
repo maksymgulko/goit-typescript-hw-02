@@ -1,19 +1,21 @@
 import s from "./SearchBar.module.css";
 import { FaSearch } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
+import { FormEvent } from "react";
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = (evt) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const form = evt.target;
-    const topic = form.elements.search.value;
+    const form = evt.currentTarget as HTMLFormElement;
+    const topic = form.elements.namedItem("search") as HTMLInputElement;
+    const searchValue = topic.value;
 
-    if (form.elements.search.value.trim() === "") {
+    if (searchValue.trim() === "") {
       toast.error("This didn't work.");
       return;
     }
 
-    onSearch(topic);
+    onSearch(searchValue);
     form.reset();
   };
 

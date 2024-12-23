@@ -12,25 +12,25 @@ import Modal from "react-modal";
 function App() {
   Modal.setAppElement("#root");
 
-  const [photos, setPhotos] = useState([]);
-  const [loader, setLoader] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(false);
-  const [page, setPage] = useState(1);
-  const [topic, setTopic] = useState("");
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [loader, setLoader] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [topic, setTopic] = useState<string>("");
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Photo | null>(null);
 
-  const openModal = (image) => {
+  const openModal = (image: Photo): void => {
     setSelectedImage(image);
     setIsOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsOpen(false);
     setSelectedImage(null);
   };
 
-  async function fetchPhotos(newTopic) {
+  async function fetchPhotos(newTopic: string): Promise<void> {
     setPage(1);
     setTopic(newTopic);
     setPhotos([]);
@@ -48,7 +48,7 @@ function App() {
     }
   }
 
-  async function addPhotos() {
+  async function addPhotos(): Promise<void> {
     const nextPage = page + 1;
     try {
       setLoader(true);
